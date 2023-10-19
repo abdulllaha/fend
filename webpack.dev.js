@@ -1,7 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const {CleanWebpackPlugin}  = require('clean-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = {
   entry: './src/client/index.js',
@@ -21,6 +22,10 @@ module.exports = {
       },
     ],
   },
+  output: {
+    libraryTarget: 'var',
+    library: 'Client',
+  },
   plugins: [
     new HtmlWebPackPlugin({
       template: './src/client/views/index.html',
@@ -36,4 +41,8 @@ module.exports = {
       protectWebpackAssets: false,
     }),
   ],
+  optimization: {
+    minimizer: [new CssMinimizerPlugin()],
+    minimize: true,
+  },
 };
