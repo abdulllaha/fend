@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
-
+const { GenerateSW } = require('workbox-webpack-plugin');
 module.exports = {
   entry: './src/client/index.js',
   mode: 'production',
@@ -32,8 +32,11 @@ module.exports = {
       filename: './index.html',
     }),
     new MiniCssExtractPlugin({ filename: 'style.[contenthash].css' }),
-    new WorkboxPlugin.GenerateSW()
-  ],
+    new WorkboxPlugin.GenerateSW({
+        swDest: 'service-worker.js', // Output file name
+        clientsClaim: true,
+        skipWaiting: true,
+      }),  ],
   optimization: {
     minimize: true,
     minimizer: [

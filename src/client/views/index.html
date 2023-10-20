@@ -1,55 +1,60 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>Test</title>
-      
-    </head>
 
-    <body>
+<head>
+    <meta charset="utf-8">
+    <title>Test</title>
 
-        <header>
-            <div class="">
-                Logo
+</head>
+
+<body>
+
+    <header>
+        <div class="">
+            Logo
+        </div>
+        <div class="">
+            navigation
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <form class="" onsubmit="return Client.submitChecker(event)">
+                <input id="url" type="text" name="url" value="" placeholder="Name">
+                <input type="submit" name="" value="submit" onclick="return Client.submitChecker(event)"
+                    onsubmit="return Client.submitChecker(event)">
+            </form>
+        </section>
+
+        <section>
+            <strong>Form Results:</strong>
+            <div id="loader" style="display: none;"></div>
+            <div id="error" style="display: none;"></div>
+            <div id="results">
+                <ul id="resultsList">
+                    <li id="subjectivity"></li>
+                    <li id="polarity"></li>
+                    <li id="textSnippet"></li>
+                </ul>
             </div>
-            <div class="">
-                navigation
-            </div>
-        </header>
+        </section>
+    </main>
 
-        <main>
-            <section>
-                <form class="" onsubmit="return Client.submitChecker(event)">
-                    <input id="url" type="text" name="url" value="" placeholder="Name">
-                    <input type="submit" name="" value="submit" onclick="return Client.submitChecker(event)" onsubmit="return Client.submitChecker(event)">
-                </form>
-            </section>
-
-            <section>
-                <strong>Form Results:</strong>
-                <div id="loader" style="display: none;"></div>
-                <div id="error" style="display: none;"></div>
-                <div id="results">
-                    <ul id="resultsList">
-                        <li id="subjectivity"></li>
-                        <li id="polarity"></li>
-                        <li id="textSnippet"></li>
-                    </ul>
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <p>This is a footer</p>
-        </footer>
-        <script>
-            // Check that service workers are supported
-            if ('serviceWorker' in navigator) {
-                // Use the window load event to keep the page load performant
-                window.addEventListener('load', () => {
-                    navigator.serviceWorker.register('/service-worker.js');
+    <footer>
+        <p>This is a footer</p>
+    </footer>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(function (registration) {
+                    console.log('Service Worker registered with scope:', registration.scope);
+                })
+                .catch(function (error) {
+                    console.error('Service Worker registration failed:', error);
                 });
-            }
-        </script>
-    </body>
+        }
+    </script>
+</body>
+
 </html>
