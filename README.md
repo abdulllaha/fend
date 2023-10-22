@@ -32,7 +32,7 @@ command npm run test
 - [Development](#development)
 
 ## Development
-javascript ES6, HTML5, CSS, nodejs 14, express and webpack
+javascript ES6, HTML5, CSS, nodejs 20, express and webpack
 
 ## Resources
 Resources I used to develope the project
