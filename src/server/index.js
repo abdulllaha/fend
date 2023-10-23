@@ -9,20 +9,17 @@ app.use(cors())
 
 const  API_KEY = process.env.API_KEY;
 const port = 8081
+
 app.use(express.static('dist'));
 app.use(express.json())
 app.get('/', function (req, res) {
-    res.sendFile('dist/index.html');
+    res.sendFile('../../dist/index.html');
 });
 
 // designates what port the app will listen to for incoming requests
 app.listen(8081, function () {
 console.log(`app listening on port ! ${port}`)
 })
-
-app.get('/', function (req, res) {
-    res.render("index.html")
-});
 
 app.post("/", async (req, res) => {
     // 1. get the url from the request body
